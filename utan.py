@@ -6,23 +6,18 @@ from flask import Flask, request, render_template, flash
 from flask.ext.sqlalchemy import SQLAlchemy
 
 # STRIPE ACCOUNT: durianpy.stripe@yopmail.com / tester101
-# OPENSHIFT ACCOUNT: durianpy.stripe@yopmail.com / tester101
 
 TEST_SECRET_KEY = 'sk_test_uDRQbDeQMHk1mc4WhkvD2z5K'
 TEST_PUBLIC_KEY = 'pk_test_a8OgVzFR6WRG0vcdLIseTi2U'
 
 app = Flask(__name__)
-app.config.from_object(__name__)
-app.config.update(dict(
-    DEBUG=True,
-    SECRET_KEY='development_key',
-))
-# DB = 'sqlite:///%s/database.db' % (os.getcwd())
 DB_NAME = 'utan_db'
 DB_USER = 'ralphleyga'
 DB = 'postgresql://postgres:%s@localhost/%s' % (DB_USER, DB_NAME)
 app.config['SQLALCHEMY_DATABASE_URI'] = DB
 app.config['autocommit'] = True
+app.config['DEBUG'] = True
+app.config['SECRET_KEY'] = 'secret key'
 db = SQLAlchemy(app)
 
 GULAY = {
